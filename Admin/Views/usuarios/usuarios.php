@@ -3,46 +3,46 @@
 
 
 
-<div class="row">
 
-    <div class="col-lg-8 d-flex align-items-stretch">
-        <div class="card w-100">
-            <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Lista de Usuarios</h5>
 
-                <div class="table-responsive">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_usuario">
-                        Nuevo Usuario
-                    </button>
-                    <table class="table text-nowrap mb-0 align-middle">
-                        <thead class="text-dark fs-4">
-                            <tr>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">#</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Nombres</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Apellidos</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Rol</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Opciones</h6>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla_usuarios">
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+<h5 class="card-title fw-semibold mb-4">Lista de Usuarios</h5>
+
+<div class="table-responsive" style="overflow-x: auto;">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_usuario">
+        Nuevo Usuario
+    </button>
+    <table class="table text-nowrap mb-0 align-middle">
+        <thead class="text-dark fs-4">
+            <tr>
+                <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">#</h6>
+                </th>
+                <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Nombres</h6>
+                </th>
+                <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Apellidos</h6>
+                </th>
+                <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Rol</h6>
+                </th>
+                <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Opciones</h6>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tabla_usuarios">
+
+        </tbody>
+    </table>
 </div>
+
+
+
+
 
 <!-- Ventana Modal-->
 
@@ -107,7 +107,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nombre">Repita su contraseña</label>
-                        <input type="password" required class="form-control" onfocusout="verifica_contrasenias()"  id="Contrasenia2" placeholder="Contrasenia2">
+                        <input type="password" required class="form-control" onfocusout="verifica_contrasenias()" id="Contrasenia2" placeholder="Contrasenia2">
                         <div class="alert alert-danger d-none" role="alert" id="errorContrasenia">
                         </div>
                     </div>

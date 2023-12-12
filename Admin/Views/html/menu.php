@@ -17,16 +17,16 @@
           <span class="hide-menu">Pantallad e Inicio </span>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="./index.html" aria-expanded="false">
+          <a class="sidebar-link" href="" aria-expanded="false">
             <span>
               <i class="ti ti-layout-dashboard"></i>
             </span>
-            <span class="hide-menu">Dashboard</span>
+            <span class="hide-menu">Inicio</span>
           </a>
         </li>
         <li class="nav-small-cap">
           <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-          <span class="hide-menu">UI COMPONENTS</span>
+          <span class="hide-menu">FUNCIONALIDAD</span>
         </li>
         <!-- /*****************************************************************************************************************************************************************************/
                                                                                         MENU DE USUARIOS
@@ -45,7 +45,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="paises/paises.php" target="base" aria-expanded="false">
             <span>
-            <i class="ti ti-tag"></i>
+              <i class="ti ti-tag"></i>
             </span>
             <span class="hide-menu">Categoria</span>
           </a>
@@ -90,7 +90,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
-            <i class="ti ti-file-description"></i>
+              <i class="ti ti-file-description"></i>
             </span>
             <span class="hide-menu">Reseñas</span>
           </a>
@@ -101,7 +101,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
-            <i class="ti ti-settings"></i>
+              <i class="ti ti-settings"></i>
             </span>
             <span class="hide-menu">Personalizacion</span>
           </a>
@@ -113,7 +113,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
-            <i class="ti ti-settings"></i>
+              <i class="ti ti-settings"></i>
             </span>
             <span class="hide-menu">Personalizacion Deslisador</span>
           </a>
@@ -122,9 +122,9 @@
                                                                                         MENU DE DIRECION PAGINA WEB
             /*****************************************************************************************************************************************************************************/ -->
         <li class="sidebar-item">
-          <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
+          <a class="sidebar-link" href="../../../index.php" target="base" aria-expanded="false">
             <span>
-            <i class="ti ti-world"></i>
+              <i class="ti ti-world"></i>
             </span>
             <span class="hide-menu">Comercio Electronico</span>
           </a>
