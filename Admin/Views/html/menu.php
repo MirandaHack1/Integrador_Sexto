@@ -17,7 +17,7 @@
           <span class="hide-menu">Pantallad e Inicio </span>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="" aria-expanded="false">
+          <a class="sidebar-link" href="." aria-expanded="false">
             <span>
               <i class="ti ti-layout-dashboard"></i>
             </span>
@@ -119,10 +119,21 @@
           </a>
         </li>
         <!-- /*****************************************************************************************************************************************************************************/
+                                                                                        MENU DE PERSONALIZACION
+            /*****************************************************************************************************************************************************************************/ -->
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
+            <span>
+              <i class="ti ti-file"></i>
+            </span>
+            <span class="hide-menu">Reportes</span>
+          </a>
+        </li>
+        <!-- /*****************************************************************************************************************************************************************************/
                                                                                         MENU DE DIRECION PAGINA WEB
             /*****************************************************************************************************************************************************************************/ -->
         <li class="sidebar-item">
-          <a class="sidebar-link" href="../../../index.php" target="base" aria-expanded="false">
+          <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
               <i class="ti ti-world"></i>
             </span>
