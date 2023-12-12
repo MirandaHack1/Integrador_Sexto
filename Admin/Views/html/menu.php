@@ -45,7 +45,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="paises/paises.php" target="base" aria-expanded="false">
             <span>
-              <i class="ti ti-alert-circle"></i>
+            <i class="ti ti-tag"></i>
             </span>
             <span class="hide-menu">Categoria</span>
           </a>
@@ -56,7 +56,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
-              <i class="ti ti-file-description"></i>
+              <i class="ti ti-package"></i>
             </span>
             <span class="hide-menu">Productos</span>
           </a>
@@ -67,9 +67,9 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
-              <i class="ti ti-file-description"></i>
+              <i class="ti ti-shopping-cart"></i>
             </span>
-            <span class="hide-menu">Order</span>
+            <span class="hide-menu">Orden</span>
           </a>
         </li>
         <!-- /*****************************************************************************************************************************************************************************/
@@ -78,7 +78,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
-              <i class="ti ti-file-description"></i>
+              <i class="ti ti-cut"></i>
             </span>
             <span class="hide-menu">Cúpon</span>
           </a>
@@ -90,7 +90,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
-              <i class="ti ti-file-description"></i>
+            <i class="ti ti-file-description"></i>
             </span>
             <span class="hide-menu">Reseñas</span>
           </a>
@@ -101,7 +101,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
-              <i class="ti ti-file-description"></i>
+            <i class="ti ti-settings"></i>
             </span>
             <span class="hide-menu">Personalizacion</span>
           </a>
@@ -113,7 +113,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
-              <i class="ti ti-file-description"></i>
+            <i class="ti ti-settings"></i>
             </span>
             <span class="hide-menu">Personalizacion Deslisador</span>
           </a>
@@ -124,7 +124,7 @@
         <li class="sidebar-item">
           <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
             <span>
-              <i class="ti ti-file-description"></i>
+            <i class="ti ti-world"></i>
             </span>
             <span class="hide-menu">Comercio Electronico</span>
           </a>
