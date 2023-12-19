@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-12-2023 a las 03:57:42
+-- Tiempo de generación: 19-12-2023 a las 01:29:58
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -108,16 +108,22 @@ CREATE TABLE `productos` (
 --
 
 CREATE TABLE `usuarios` (
-  `UsuarioID` int(11) NOT NULL,
-  `NombreUsuario` varchar(50) NOT NULL,
-  `Contraseña` varchar(100) NOT NULL,
-  `CorreoElectronico` varchar(100) NOT NULL,
-  `FechaRegistro` datetime NOT NULL,
-  `NombreCompleto` varchar(100) NOT NULL,
-  `Direccion` varchar(100) NOT NULL,
-  `Telefono` varchar(20) NOT NULL,
-  `FechaNacimiento` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `UsuarioId` int(11) NOT NULL,
+  `Cedula` varchar(17) NOT NULL,
+  `Nombres` varchar(100) NOT NULL,
+  `Apellidos` varchar(100) NOT NULL,
+  `Telefono` varchar(17) NOT NULL,
+  `Correo` varchar(150) NOT NULL,
+  `Contrasenia` text NOT NULL,
+  `Rol` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`UsuarioId`, `Cedula`, `Nombres`, `Apellidos`, `Telefono`, `Correo`, `Contrasenia`, `Rol`) VALUES
+(1, '2300035421', 'Jhonny ', 'Miranda', '023791167', 'miranda3791167@gmail.com', '123', 'Administrador');
 
 --
 -- Índices para tablas volcadas
@@ -164,7 +170,7 @@ ALTER TABLE `productos`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`UsuarioID`);
+  ADD PRIMARY KEY (`UsuarioId`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -204,7 +210,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `UsuarioID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `UsuarioId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
