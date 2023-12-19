@@ -22,7 +22,7 @@ switch ($_GET["op"]) {
         $Nombres = $_POST["Nombres"];
         $Apellidos = $_POST["Apellidos"];
         $Telefono = $_POST["Telefono"];
-        $Contrasenia = $_POST["Contrasenia"];
+        $Contrasenia = md5($_POST["Contrasenia"]);
         $Correo = $_POST["Correo"];
         $Rol = $_POST["Rol"];
 
@@ -36,7 +36,7 @@ switch ($_GET["op"]) {
         $Nombres = $_POST["Nombres"];
         $Apellidos = $_POST["Apellidos"];
         $Telefono = $_POST["Telefono"];
-        $Contrasenia = $_POST["Contrasenia"];
+        $Contrasenia = md5($_POST["Contrasenia"]);
         $Correo = $_POST["Correo"];
         $Rol = $_POST["Rol"];
 
@@ -52,14 +52,14 @@ switch ($_GET["op"]) {
         break;
     case 'actualizar_contrasenia':
         $UsuarioId = $_POST["UsuarioId"];
-        $Contrasenia = $_POST["Contrasenia"];
+        $Contrasenia = md5($_POST["Contrasenia"]);
         $datos = array(); //defino un arreglo
         $datos = $usuarios->actualizar_contrasenia($UsuarioId, $Contrasenia); //llamo al modelo de usuarios e invoco al procedimiento actual
         echo json_encode($datos);
         break;
     case 'login':
         $correo = $_POST["correo"];
-        $contrasenia = $_POST["contrasenia"];
+        $contrasenia = md5($_POST["contrasenia"]);
         if (empty($correo) || empty($contrasenia)) {
             header("Location:../login.php?op=1"); //llenar datos vacios
             exit();
