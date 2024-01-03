@@ -43,7 +43,7 @@
                                                                                         MENU DE CATEGORIA
             /*****************************************************************************************************************************************************************************/ -->
         <li class="sidebar-item">
-          <a class="sidebar-link" href="paises/paises.php" target="base" aria-expanded="false">
+          <a class="sidebar-link" href="categoria/categoria.php" target="base" aria-expanded="false">
             <span>
               <i class="ti ti-tag"></i>
             </span>
