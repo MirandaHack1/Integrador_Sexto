@@ -11,54 +11,39 @@ switch ($_GET["op"]) {
         echo json_encode($todos); //devuelvo el arreglo en formato json
         break;
     case "uno":
-        $ProductoId = $_POST["ProductoId"]; //defino una variable para almacenar el id del usuario, la variable se obtiene mediante POST
+        $ProductoID = $_POST["ProductoID"]; //defino una variable para almacenar el id del usuario, la variable se obtiene mediante POST
         $datos = array(); //defino un arreglo
-        $datos = $productos->uno($ProductoId); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
+        $datos = $productos->uno($ProductoID); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
         $uno = mysqli_fetch_assoc($datos); //recorro el arreglo de datos
         echo json_encode($uno); //devuelvo el arreglo en formato json
         break;
+
+
+
     case 'insertar':
-        $Nombre = $_POST["Nombre"];
-        $Precio_Compra = $_POST["Precio_Compra"];
-        $Precio_Venta = $_POST["Precio_Venta"];
-        $Iva = $_POST["Iva"];
-        $cantidad = $_POST["cantidad"];
-        $Unidad_Medida = $_POST["Unidad_Medida"];
-        $Fecha = $_POST["Fecha"];
-        $Imagen = $_FILES["Imagen"];
+        $ID_Provedores = $_POST["ID_Provedores"];
+        $Nombre_Producto = $_POST["Nombre_Producto"];
+        $Cantidad = $_POST["Cantidad"];
+        $Precio_Unitario = $_POST["Precio_Unitario"];
 
         $datos = array(); //defino un arreglo
-        $datos = $productos->insertar($Nombre, $Precio_Compra, $Precio_Venta, $Iva, $cantidad, $Unidad_Medida, $Imagen, $Fecha); //llamo al modelo de usuarios e invoco al procedimiento insertar
+        $datos = $inventario->insertar($ID_Provedores, $Nombre_Producto, $Cantidad, $Precio_Unitario); //llamo al modelo de usuarios e invoco al procedimiento insertar
         echo json_encode($datos); //devuelvo el arreglo en formato json
         break;
     case 'actualizar':
-        $ProductoId = $_POST["ProductoId"];
-        $Nombre = $_POST["Nombre"];
-        $Precio_Compra = $_POST["Precio_Compra"];
-        $Precio_Venta = $_POST["Precio_Venta"];
-        $Iva = $_POST["Iva"];
-        $cantidad = $_POST["cantidad"];
-        $Unidad_Medida = $_POST["Unidad_Medida"];
-        $Fecha = $_POST["Fecha"];
-        $Imagen = $_FILES["Imagen"];
+        $ID_Producto = $_POST["ID_Producto"];
+        $ID_Provedores = $_POST["ID_Provedores"];
+        $Nombre_Producto = $_POST["Nombre_Producto"];
+        $Cantidad = $_POST["Cantidad"];
+        $Precio_Unitario = $_POST["Precio_Unitario"];
         $datos = array(); //defino un arreglo
-        $datos = $productos->actualizar($ProductoId, $Nombre, $Precio_Compra, $Precio_Venta, $Iva, $cantidad, $Unidad_Medida, $Imagen, $Fecha); //llamo al modelo de usuarios e invoco al procedimiento actual
+        $datos = $inventario->actualizar($ID_Producto, $ID_Provedores, $Nombre_Producto, $Cantidad, $Precio_Unitario); //llamo al modelo de usuarios e invoco al procedimiento actual
         echo json_encode($datos); //devuelvo el arreglo en formato json
         break;
-    case 'actualizar_imagen':
-        $ProductoId = $_POST["ProductoId2"];
-        $Imagen = $_FILES["Imagen"];
-        try {
-            $productos->guardar_imagen($ProductoId);
-            echo json_encode("ok");
-        } catch (\Throwable $th) {
-            echo json_encode("erro");
-        }
-        break;
     case 'eliminar':
-        $ProductoId = $_POST["ProductoId"]; //defino una variable para almacenar el id del usuario, la variable se obtiene mediante POST
+        $ID_Producto = $_POST["ID_Producto"]; //defino una variable para almacenar el id del usuario, la variable se obtiene mediante POST
         $datos = array(); //defino un arreglo
-        $datos = $productos->eliminar($ProductoId); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
+        $datos = $inventario->eliminar($ID_Producto); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
         echo json_encode($datos); //devuelvo el arreglo en formato json
         break;
 }

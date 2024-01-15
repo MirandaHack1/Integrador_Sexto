@@ -7,7 +7,7 @@ class Clase_Productos
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "SELECT * FROM `Productos`";
+            $cadena = "SELECT productos.ProductoID, productos.CodigoReferencia, productos.Nombre, productos.Precio, productos.Descripcion, productos.Imagen, productos.CategoriaID, productos.FechaIngreso, productos.Stock, categorias.Nombre as categorias FROM `productos` inner JOIN categorias on categorias.CategoriaID  = productos.CategoriaID";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (Throwable $th) {
@@ -16,12 +16,12 @@ class Clase_Productos
             $con->close();
         }
     }
-    public function uno($ProductoId)
+    public function uno($ProductoID)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "SELECT * FROM `Productos` WHERE ProductoId=$ProductoId";
+            $cadena = "SELECT * FROM `productos` WHERE ProductoID =$ProductoID ";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (Throwable $th) {
@@ -30,16 +30,39 @@ class Clase_Productos
             $con->close();
         }
     }
-    public function insertar($Nombre, $Precio_Compra, $Precio_Venta, $Iva, $cantidad, $Unidad_Medida, $Imagen, $Fecha)
+    // public function insertar($ID_Provedores,$Nombre_Producto, $Cantidad, $Precio_Unitario)
+    // {
+    //     try {
+    //         $con = new Clase_Conectar_Base_Datos();
+    //         $con = $con->ProcedimientoConectar();
+    //         $cadena = "INSERT INTO `inventario`(`ID_Provedores`, `Nombre_Producto`, `Cantidad`, `Precio_Unitario`)VALUES ($ID_Provedores,'$Nombre_Producto', '$Cantidad','$Precio_Unitario')";
+    //         $result = mysqli_query($con, $cadena);
+    //         return 'ok';
+    //     } catch (Throwable $th) {
+    //         return $th->getMessage();
+    //     } finally {
+    //         $con->close();
+    //     }
+    // }
+    public function insertar($ID_Provedores, $Nombre_Producto, $Cantidad, $Precio_Unitario)
     {
         try {
-            $produpdate = new Clase_Productos();
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "INSERT INTO `Productos`( `Nombre`, `Precio_Compra`, `Precio_Venta`, `Iva`, `cantidad`, `Unidad_Medida`, `Imagen`, `Fecha`) VALUES ('$Nombre','$Precio_Compra','$Precio_Venta',$Iva,$cantidad,'$Unidad_Medida','$Imagen','$Fecha')";
+
+            // Validar si el Nombre_Producto ya existe
+            $consulta_existencia = "SELECT COUNT(*) as total FROM `inventario` WHERE `Nombre_Producto` = '$Nombre_Producto'";
+            $resultado_existencia = mysqli_query($con, $consulta_existencia);
+            $total_existencia = mysqli_fetch_assoc($resultado_existencia)["total"];
+
+            if ($total_existencia > 0) {
+                return "Error: El producto '$Nombre_Producto' Ya existe en la base de datos.";
+            }
+
+            // Si no existe, proceder con la inserción
+            $cadena = "INSERT INTO `inventario`(`ID_Provedores`, `Nombre_Producto`, `Cantidad`, `Precio_Unitario`) VALUES ($ID_Provedores,'$Nombre_Producto', '$Cantidad','$Precio_Unitario')";
             $result = mysqli_query($con, $cadena);
-            $iultimoid = mysqli_insert_id($con);
-           $produpdate->guardar_imagen($iultimoid);
+
             return 'ok';
         } catch (Throwable $th) {
             return $th->getMessage();
@@ -47,17 +70,15 @@ class Clase_Productos
             $con->close();
         }
     }
-   
-    public function actualizar($ProductoId, $Nombre, $Precio_Compra, $Precio_Venta, $Iva, $cantidad, $Unidad_Medida, $Imagen, $Fecha)
+
+
+    public function actualizar($ID_Producto, $ID_Provedores, $Nombre_Producto, $Cantidad, $Precio_Unitario)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "UPDATE `Productos` SET `Nombre`='$Nombre',`Precio_Compra`='$Precio_Compra',`Precio_Venta`='$Precio_Venta',`Iva`=$Iva,`cantidad`=$cantidad,`Unidad_Medida`='$Unidad_Medida',`Fecha`='$Fecha' WHERE `ProductoId`='$ProductoId'";
-            //$cadena = "UPDATE `Productos` SET `Nombre`='$Nombre',`Precio_Compra`='$Precio_Compra',`Precio_Venta`='$Precio_Venta',`Iva`=$Iva,`cantidad`=$cantidad,`Unidad_Medida`='$Unidad_Medida',`Imagen`='$Imagen',`Fecha`=CURDATE() WHERE `ProductoId`='$ProductoId'";
+            $cadena = "UPDATE `inventario` SET  `ID_Provedores` ='$ID_Provedores', `Nombre_Producto`='$Nombre_Producto', `Cantidad`='$Cantidad', `Precio_Unitario`='$Precio_Unitario'  WHERE `ID_Producto`='$ID_Producto'";
             $result = mysqli_query($con, $cadena);
-            $produpdate = new Clase_Productos();
-            $produpdate->guardar_imagen($ProductoId);
             return "ok";
         } catch (Throwable $th) {
             return $th->getMessage();
@@ -65,33 +86,13 @@ class Clase_Productos
             $con->close();
         }
     }
-
-    public function guardar_imagen($iultimoid){
-        if ($_FILES["Imagen"]["tmp_name"] != '') {
-            $extension = explode('.', $_FILES["Imagen"]["name"]); //split     osito.jpg     [osito , jpg]
-            $nuevo_nombre = $iultimoid . '.' . $extension[1]; //1.jpg
-            $destino = "../Public/assets/images/products/" . $nuevo_nombre;
-            move_uploaded_file($_FILES["Imagen"]["tmp_name"], $destino);
-            $produpdate = new Clase_Productos();
-            $produpdate->actualizarImagen("../".$destino, $iultimoid);
-        }
-
-    }
-
-    public function actualizarImagen($destino, $iultimoid)
-    {
-        $con = new Clase_Conectar_Base_Datos();
-        $con = $con->ProcedimientoConectar();
-        $cadena = "UPDATE `Productos` SET `Imagen`='$destino' WHERE `ProductoId`=$iultimoid";
-        $result = mysqli_query($con, $cadena);
-    }
-
-    public function eliminar($ProductoId)
+    public function eliminar($ID_Producto)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "delete from Productos where ProductoId=$ProductoId";
+            $cadena = "DELETE  FROM `inventario` WHERE `ID_Producto`='$ID_Producto'";
+            // from inventario where ID_Producto =$ID_Producto ;
             $result = mysqli_query($con, $cadena);
             return "ok";
         } catch (Throwable $th) {
