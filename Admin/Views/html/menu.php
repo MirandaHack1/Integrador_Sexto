@@ -54,7 +54,7 @@
                                                                                         MENU DE Productos
             /*****************************************************************************************************************************************************************************/ -->
         <li class="sidebar-item">
-          <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
+          <a class="sidebar-link" href="productos2/productos2.php" target="base" aria-expanded="false">
             <span>
               <i class="ti ti-package"></i>
             </span>
@@ -65,59 +65,14 @@
                                                                                         MENU DE ORDER
             /*****************************************************************************************************************************************************************************/ -->
         <li class="sidebar-item">
-          <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
+          <a class="sidebar-link" href="orden/orden.php" target="base" aria-expanded="false">
             <span>
               <i class="ti ti-shopping-cart"></i>
             </span>
             <span class="hide-menu">Orden</span>
           </a>
         </li>
-        <!-- /*****************************************************************************************************************************************************************************/
-                                                                                        MENU DE CUPON
-            /*****************************************************************************************************************************************************************************/ -->
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
-            <span>
-              <i class="ti ti-cut"></i>
-            </span>
-            <span class="hide-menu">Cúpon</span>
-          </a>
-        </li>
-
-        <!-- /*****************************************************************************************************************************************************************************/
-                                                                                        MENU DE RESEÑAS
-            /*****************************************************************************************************************************************************************************/ -->
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
-            <span>
-              <i class="ti ti-file-description"></i>
-            </span>
-            <span class="hide-menu">Reseñas</span>
-          </a>
-        </li>
-        <!-- /*****************************************************************************************************************************************************************************/
-                                                                                        MENU DE PERSONALIZACION
-            /*****************************************************************************************************************************************************************************/ -->
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
-            <span>
-              <i class="ti ti-settings"></i>
-            </span>
-            <span class="hide-menu">Personalizacion</span>
-          </a>
-        </li>
-
-        <!-- /*****************************************************************************************************************************************************************************/
-                                                                                        MENU DE PERSONALIZACION
-            /*****************************************************************************************************************************************************************************/ -->
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
-            <span>
-              <i class="ti ti-settings"></i>
-            </span>
-            <span class="hide-menu">Personalizacion Deslisador</span>
-          </a>
-        </li>
+       
         <!-- /*****************************************************************************************************************************************************************************/
                                                                                         MENU DE PERSONALIZACION
             /*****************************************************************************************************************************************************************************/ -->
