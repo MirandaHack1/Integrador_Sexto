@@ -1,51 +1,96 @@
-// Aquí va a estar el código de usuarios.model.js
-
+// ***************************************************************************************************************************************************************************
 function init() {
-  $("#frm_inventario").on("submit", function (e) {
+  $("#frm_orden").on("submit", function (e) {
     guardaryeditar(e);
   });
 }
-
-// $(document).ready(() => {
-//   todos();
-// });
+// ***************************************************************************************************************************************************************************
+// ***************************************************************************************************************************************************************************
 $().ready(() => {
   todos();
 });
+// ***************************************************************************************************************************************************************************
+// var todos = () => {
+//   var html = "";
+//   $.get("../../Controllers/orden.controller.php?op=todos", (res) => {
+//     console.log(res);
+//     res = JSON.parse(res);
+//     $.each(res, (index, valor) => {
+//       html += `<tr>
+//                 <td>${index + 1}</td>
+//                 <td>${valor.Nombre}</td>
+//                 <td>${valor.Telefono}</td>
+//                 <td>${valor.Ciudad}</td>
+//                 <td>${valor.Pais}</td>
+//                 <td>${valor.DireccionEnvio}</td>
+//                 <td>${valor.FechaOrden}</td>
+//                 <td>${valor.FormaEnvio}</td>
+//                 <td>${valor.Total}</td>
+//                 <td>${valor.Estado}</td>
+//                 <td>
+
+//                   <button class='btn btn-success' onclick='editar(${valor.OrdenID})'>Editar</button>
+//                   <button class='btn btn-danger' onclick='eliminar(${valor.OrdenID})'>Eliminar</button>
+//                   <button class='btn btn-info' onclick='ver(${valor.OrdenID})'>Ver</button>
+//                 </td>
+//               </tr>`;
+//     });
+//     $("#tabla_orden").html(html);
+//   });
+// };
 
 var todos = () => {
   var html = "";
-  $.get("../../Controllers/inventario.controller.php?op=todos", (res) => {
+  $.get("../../Controllers/orden.controller.php?op=todos", (res) => {
     console.log(res);
     res = JSON.parse(res);
     $.each(res, (index, valor) => {
+      // Definir clases CSS según el estado
+      var estadoClass = "";
+      if (valor.Estado === "Pendiente") {
+        estadoClass = "text-danger"; // Texto en rojo
+      } else if (valor.Estado === "Procesado") {
+        estadoClass = "text-warning"; // Texto en amarillo
+      } else if (valor.Estado === "Enviado") {
+        estadoClass = "text-success"; // Texto en verde
+      }
       html += `<tr>
                 <td>${index + 1}</td>
-                <td>${valor.proveedores}</td>
-                <td>${valor.Nombre_Producto}</td>
-                <td>${valor.Cantidad}</td>
-                <td>${valor.Precio_Unitario}</td>
+                <td>${valor.Nombre}</td>
+                <td>${valor.Telefono}</td>
+                <td>${valor.Ciudad}</td>
+                <td>${valor.Pais}</td>
+                <td>${valor.DireccionEnvio}</td>
+                <td>${valor.FechaOrden}</td>
+                <td>${valor.FormaEnvio}</td>
+                <td>${valor.Total}</td>
+                <td class="${estadoClass}">${valor.Estado}</td>
                 <td>
-                  <button class='btn btn-success' onclick='editar(${valor.ID_Producto})'>Editar</button>
-                  <button class='btn btn-danger' onclick='eliminar(${valor.ID_Producto})'>Eliminar</button>
-                  <button class='btn btn-info' onclick='ver(${valor.ID_Producto})'>Ver</button>
+                  <button class='btn btn-success' onclick='editar(${valor.OrdenID})'>Editar</button>
+                  <button class='btn btn-danger' onclick='eliminar(${valor.OrdenID})'>Eliminar</button>
+                  <button class='btn btn-info' onclick='ver(${valor.OrdenID})'>Ver</button>
                 </td>
               </tr>`;
     });
-    $("#tabla_inventario").html(html);
+    $("#tabla_orden").html(html);
   });
 };
 
+
+// ***************************************************************************************************************************************************************************
+// ***************************************************************************************************************************************************************************
+
+
 // var guardaryeditar = (e) => {
 //   e.preventDefault();
-//   var dato = new FormData($("#frm_inventario")[0]);
+//   var dato = new FormData($("#frm_orden")[0]);
 //   var ruta = "";
-//   // var ID_Producto = $("#ID_Producto").val(); // Corregido: Usar jQuery para obtener el valor
-//   var ID_Producto = document.getElementById("ID_Producto").value;
-//   if (ID_Producto > 0) {
-//     ruta = "../../Controllers/inventario.controller.php?op=actualizar";
+//   // var OrdenID = $("#OrdenID").val(); // Corregido: Usar jQuery para obtener el valor
+//   var OrdenID = document.getElementById("OrdenID").value;
+//   if (OrdenID > 0) {
+//     ruta = "../../Controllers/orden.controller.php?op=actualizar";
 //   } else {
-//     ruta = "../../Controllers/inventario.controller.php?op=insertar";
+//     ruta = "../../Controllers/orden.controller.php?op=insertar";
 //   }
 //   $.ajax({
 //     url: ruta,
@@ -56,11 +101,11 @@ var todos = () => {
 //     success: function (res) {
 //       res = JSON.parse(res);
 //       if (res === "ok") { // Corregido: Verificar la propiedad status
-//         Swal.fire("inventario", "Registrado con éxito", "success");
+//         Swal.fire("orden", "Registrado con éxito", "success");
 //         todos();
 //         limpia_Cajas();
 //       } else {
-//         Swal.fire("inventario", "Error al guardar, inténtalo de nuevo más tarde", "error");
+//         Swal.fire("orden", "Error al guardar, inténtalo de nuevo más tarde", "error");
 //       }
 //     },
 //   });
@@ -68,14 +113,14 @@ var todos = () => {
 
 var guardaryeditar = (e) => {
   e.preventDefault();
-  var dato = new FormData($("#frm_inventario")[0]);
+  var dato = new FormData($("#frm_orden")[0]);
   var ruta = "";
-  var ID_Producto = document.getElementById("ID_Producto").value;
+  var OrdenID = document.getElementById("OrdenID").value;
 
-  if (ID_Producto > 0) {
-      ruta = "../../Controllers/inventario.controller.php?op=actualizar";
+  if (OrdenID > 0) {
+      ruta = "../../Controllers/orden.controller.php?op=actualizar";
   } else {
-      ruta = "../../Controllers/inventario.controller.php?op=insertar";
+      ruta = "../../Controllers/orden.controller.php?op=insertar";
   }
 
   $.ajax({
@@ -88,7 +133,7 @@ var guardaryeditar = (e) => {
           try {
               res = JSON.parse(res);
               if (res === "ok") {
-                  Swal.fire("inventario", "Registrado con éxito", "success");
+                  Swal.fire("orden", "Registrado con éxito", "success");
                   todos();
                   limpia_Cajas();
               } else {
@@ -105,45 +150,49 @@ var guardaryeditar = (e) => {
       }
   });
 };
-
-var cargaInventario = () => {
+// ***************************************************************************************************************************************************************************
+var cargaclientes = () => {
   return new Promise((resolve, reject) => {
-    $.post("../../Controllers/proveedores.controller.php?op=todos", (res) => {
+    $.post("../../Controllers/clientes.controller.php?op=todos", (res) => {
       res = JSON.parse(res);
       var html = "";
       $.each(res, (index, val) => {
-        html += `<option value="${val.ID_Provedores}">${val.Nombre}</option>`;
+        html += `<option value="${val.ClienteID}">${val.Nombre}</option>`;
       });
-      $("#ID_Provedores").html(html);
+      $("#ClienteID").html(html);
       resolve();
     }).fail((error) => {
       reject(error);
     });
   });
 };
-
-var editar = async (ID_Producto) => {
-  await cargaInventario();
+// ***************************************************************************************************************************************************************************
+// ***************************************************************************************************************************************************************************
+var editar = async (OrdenID) => {
+   await cargaorden();
   $.post(
-    "../../Controllers/inventario.controller.php?op=uno",
-    { ID_Producto: ID_Producto },
+    "../../Controllers/orden.controller.php?op=uno",
+    { OrdenID: OrdenID },
     (res) => {
       res = JSON.parse(res);
 
-      $("#ID_Producto").val(res.ID_Producto);
-      $("#ID_Provedores").val(res.ID_Provedores);
-      $("#Nombre_Producto").val(res.Nombre_Producto);
-      $("#Cantidad").val(res.Cantidad);
-      $("#Precio_Unitario").val(res.Precio_Unitario);
+      $("#OrdenID").val(res.OrdenID);
+      $("#ClienteID").val(res.ClienteID);
+      $("#FormaEnvio").val(res.FormaEnvio);
+      $("#DireccionEnvio").val(res.DireccionEnvio);
+      $("#FechaOrden").val(res.FechaOrden);
+      $("#Total").val(res.Total);
+      $("#Estado").val(res.Estado);
+     
     }
   );
-  $("#Modal_inventario").modal("show");
+  $("#Modal_orden").modal("show");
 };
-
-var eliminar = (ID_Producto) => {
+// ***************************************************************************************************************************************************************************
+var eliminar = (OrdenID) => {
   Swal.fire({
-    title: "inventario",
-    text: "¿Estás seguro de eliminar la inventario?",
+    title: "orden",
+    text: "¿Estás seguro de eliminar la orden?",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#d33",
@@ -152,12 +201,12 @@ var eliminar = (ID_Producto) => {
   }).then((result) => {
     if (result.isConfirmed) {
       $.post(
-        "../../Controllers/inventario.controller.php?op=eliminar",
-        { ID_Producto: ID_Producto },
+        "../../Controllers/orden.controller.php?op=eliminar",
+        { OrdenID: OrdenID },
         (res) => {
           res = JSON.parse(res);
           if (res === "ok") {
-            Swal.fire("inventario", "inventario Eliminado", "success");
+            Swal.fire("orden", "orden Eliminado", "success");
             todos();
           } else {
             Swal.fire("Error", res, "error"); // Mostrar mensaje de error
@@ -169,15 +218,17 @@ var eliminar = (ID_Producto) => {
 
   limpia_Cajas();
 };
-
+// ***************************************************************************************************************************************************************************
+// ***************************************************************************************************************************************************************************
 var limpia_Cajas = () => {
-  $("#ID_Producto").val(""); // Corregido: Usar jQuery para establecer el valor
+  $("#OrdenID").val(""); // Corregido: Usar jQuery para establecer el valor
   $("#ID_Provedores").val(""); // Corregido: Usar jQuery para establecer el valor
   $("#Nombre_Producto").val("");
   $("#Cantidad").val("");
   $("#Precio_Unitario").val("");
 
-  $("#Modal_inventario").modal("hide");
+  $("#Modal_orden").modal("hide");
 };
+// ***************************************************************************************************************************************************************************
 
 init();

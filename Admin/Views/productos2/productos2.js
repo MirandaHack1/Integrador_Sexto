@@ -71,7 +71,7 @@ var guardaryeditar = (e) => {
   });
 };
 /***************************************************************************************** */
-// cagar categoira  
+// cagar productos
 /***************************************************************************************** */
 var cargaCategoria = () => {
   return new Promise((resolve, reject) => {
@@ -119,7 +119,7 @@ var editar = async (ProductoID) => {
   );
   $("#Modal_productos").modal("show");
 
-  limpia_Cajas();
+
   
 };
 
