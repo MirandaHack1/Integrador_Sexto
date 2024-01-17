@@ -67,7 +67,7 @@ var todos = () => {
                 <td class="${estadoClass}">${valor.Estado}</td>
                 <td>
                   <button class='btn btn-success' onclick='editar(${valor.OrdenID})'>Editar</button>
-                  <button class='btn btn-danger' onclick='eliminar(${valor.OrdenID})'>Eliminar</button>
+                 
                   <button class='btn btn-info' onclick='ver(${valor.OrdenID})'>Ver</button>
                 </td>
               </tr>`;
@@ -118,36 +118,36 @@ var guardaryeditar = (e) => {
   var OrdenID = document.getElementById("OrdenID").value;
 
   if (OrdenID > 0) {
-      ruta = "../../Controllers/orden.controller.php?op=actualizar";
+    ruta = "../../Controllers/orden.controller.php?op=actualizar";
   } else {
-      ruta = "../../Controllers/orden.controller.php?op=insertar";
+    ruta = "../../Controllers/orden.controller.php?op=insertar";
   }
 
   $.ajax({
-      url: ruta,
-      type: "POST",
-      data: dato,
-      contentType: false,
-      processData: false,
-      success: function (res) {
-          try {
-              res = JSON.parse(res);
-              if (res === "ok") {
-                  Swal.fire("orden", "Registrado con éxito", "success");
-                  todos();
-                  limpia_Cajas();
-              } else {
-                  Swal.fire("Error", res, "error"); // Mostrar mensaje de error al usuario
-              }
-          } catch (error) {
-              console.error("Error al parsear la respuesta del servidor:", error);
-              Swal.fire("Error", "Error inesperado, inténtalo de nuevo más tarde", "error");
-          }
-      },
-      error: function (xhr, status, error) {
-          console.error("Error en la solicitud AJAX:", error);
-          Swal.fire("Error", "Error inesperado, inténtalo de nuevo más tarde", "error");
+    url: ruta,
+    type: "POST",
+    data: dato,
+    contentType: false,
+    processData: false,
+    success: function (res) {
+      try {
+        res = JSON.parse(res);
+        if (res === "ok") {
+          Swal.fire("orden", "Registrado con éxito", "success");
+          todos();
+          limpia_Cajas();
+        } else {
+          Swal.fire("Error", res, "error"); // Mostrar mensaje de error al usuario
+        }
+      } catch (error) {
+        console.error("Error al parsear la respuesta del servidor:", error);
+        Swal.fire("Error", "Error inesperado, inténtalo de nuevo más tarde", "error");
       }
+    },
+    error: function (xhr, status, error) {
+      console.error("Error en la solicitud AJAX:", error);
+      Swal.fire("Error", "Error inesperado, inténtalo de nuevo más tarde", "error");
+    }
   });
 };
 // ***************************************************************************************************************************************************************************
@@ -169,7 +169,7 @@ var cargaclientes = () => {
 // ***************************************************************************************************************************************************************************
 // ***************************************************************************************************************************************************************************
 var editar = async (OrdenID) => {
-   await cargaorden();
+  await cargaclientes();
   $.post(
     "../../Controllers/orden.controller.php?op=uno",
     { OrdenID: OrdenID },
@@ -183,41 +183,97 @@ var editar = async (OrdenID) => {
       $("#FechaOrden").val(res.FechaOrden);
       $("#Total").val(res.Total);
       $("#Estado").val(res.Estado);
-     
+
     }
   );
   $("#Modal_orden").modal("show");
 };
-// ***************************************************************************************************************************************************************************
-var eliminar = (OrdenID) => {
-  Swal.fire({
-    title: "orden",
-    text: "¿Estás seguro de eliminar la orden?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6",
-    confirmButtonText: "Eliminar",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      $.post(
-        "../../Controllers/orden.controller.php?op=eliminar",
-        { OrdenID: OrdenID },
-        (res) => {
-          res = JSON.parse(res);
-          if (res === "ok") {
-            Swal.fire("orden", "orden Eliminado", "success");
-            todos();
-          } else {
-            Swal.fire("Error", res, "error"); // Mostrar mensaje de error
-          }
-        }
-      );
-    }
-  });
 
-  limpia_Cajas();
+// **********************************************************************************************************
+// var ver = async (OrdenID) => {
+//   $.post(
+//       "../../Controllers/orden.controller.php?op=unover",
+//       { OrdenID: OrdenID },
+//       (res) => {
+//           res = JSON.parse(res);
+
+
+
+//           // Obtén la referencia a la lista de productos en el modal
+//           var listaProductos = $("#lista_productos");
+
+//           // Limpiar la lista antes de agregar nuevos elementos
+//           listaProductos.empty();
+
+//           // Itera sobre los productos y agrega cada uno como un elemento de lista
+//           res.Productos.forEach(function(producto) {
+//               var listItem = $("<li>").text(producto.Nombre);
+//               listaProductos.append(listItem);
+//           });
+//       }
+//   );
+//   $("#Modal_productoso").modal("show");
+// };
+var ver = async (OrdenID) => {
+  $.post(
+    "../../Controllers/orden.controller.php?op=unover",
+    { OrdenID: OrdenID },
+    (res) => {
+  
+      // res = JSON.parse(res);
+      res = JSON.parse(res);
+
+      // Obtén la referencia a la lista de productos en el modal
+      var listaProductos = $("#lista_productos");
+
+      // Limpiar la lista antes de agregar nuevos elementos
+      listaProductos.empty();
+
+      // Itera sobre los productos y agrega cada uno como un elemento de lista
+      res.forEach(function (producto) {
+        var listItem = $("<li>").text(producto.Nombre);
+        listaProductos.append(listItem);
+      });
+    }
+  );
+  $("#Modal_productoso").modal("show");
 };
+
+
+
+
+
+
+// ***************************************************************************************************************************************************************************
+// var eliminar = (OrdenID) => {
+//   Swal.fire({
+//     title: "orden",
+//     text: "¿Estás seguro de eliminar la orden?",
+//     icon: "warning",
+//     showCancelButton: true,
+//     confirmButtonColor: "#d33",
+//     cancelButtonColor: "#3085d6",
+//     confirmButtonText: "Eliminar",
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       $.post(
+//         "../../Controllers/orden.controller.php?op=eliminar",
+//         { OrdenID: OrdenID },
+//         (res) => {
+//           res = JSON.parse(res);
+//           if (res === "ok") {
+//             Swal.fire("orden", "orden Eliminado", "success");
+//             todos();
+//           } else {
+//             Swal.fire("Error", res, "error"); // Mostrar mensaje de error
+//           }
+//         }
+//       );
+//     }
+//   });
+
+//   limpia_Cajas();
+// };
 // ***************************************************************************************************************************************************************************
 // ***************************************************************************************************************************************************************************
 var limpia_Cajas = () => {

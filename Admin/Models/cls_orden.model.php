@@ -25,9 +25,9 @@ class Clase_Ordenes
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-             $cadena = "SELECT * FROM `ordenes` WHERE OrdenID =$OrdenID";
+            $cadena = "SELECT * FROM `ordenes` WHERE OrdenID =$OrdenID";
             // $cadena = "SELECT ordenes.*, clientes.Nombre FROM ordenes INNER JOIN clientes ON ordenes.ClienteID = clientes.ClienteID WHERE ordenes.OrdenID = $OrdenID";
-            
+
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (Throwable $th) {
@@ -43,7 +43,7 @@ class Clase_Ordenes
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "UPDATE `ordenes` SET  `ClienteID` ='$ClienteID', `Total`='$Total', `FormaEnvio`='$FormaEnvio', `DireccionEnvio`='$DireccionEnvio', `FechaOrden`='$FechaOrden',`Estado`= '$Estado' WHERE `OrdenID `='$OrdenID'";
+            $cadena = "UPDATE `ordenes` SET  `ClienteID` ='$ClienteID', `Total`='$Total', `FormaEnvio`='$FormaEnvio', `DireccionEnvio`='$DireccionEnvio', `FechaOrden`='$FechaOrden',`Estado`= '$Estado' WHERE `OrdenID`='$OrdenID'";
             $result = mysqli_query($con, $cadena);
             return "ok";
         } catch (Throwable $th) {
@@ -54,4 +54,44 @@ class Clase_Ordenes
     }
     // ******************************************************************************************************************************************************************************
     // ******************************************************************************************************************************************************************************
+    // public function unover($OrdenID)
+    // {
+    //     try {
+    //         $con = new Clase_Conectar_Base_Datos();
+    //         $con = $con->ProcedimientoConectar();
+    //         //  $cadena = "SELECT * FROM `ordenes` WHERE OrdenID =$OrdenID";
+    //         // $cadena = "SELECT ordenes.*, clientes.Nombre FROM ordenes INNER JOIN clientes ON ordenes.ClienteID = clientes.ClienteID WHERE ordenes.OrdenID = $OrdenID";
+    //         $cadena="SELECT *
+    //         FROM ordenes
+    //         INNER JOIN ordendetalle ON ordenes.OrdenID = ordendetalle.OrdenID
+    //         INNER JOIN productos ON ordendetalle.ProductoID = productos.ProductoID WHERE ordenes.OrdenID=$OrdenID";
+    //         $result = mysqli_query($con, $cadena);
+    //         return $result;
+    //     } catch (Throwable $th) {
+    //         return $th->getMessage();
+    //     } finally {
+    //         $con->close();
+    //     }
+    // }
+
+
+    public function unover($OrdenID)
+    {
+        try {
+            $con = new Clase_Conectar_Base_Datos();
+            $con = $con->ProcedimientoConectar();
+
+            $cadena = "SELECT ordenes.*, ordendetalle.Cantidad, ordendetalle.*, productos.*
+            FROM ordenes
+            INNER JOIN ordendetalle ON ordenes.OrdenID = ordendetalle.OrdenID
+            INNER JOIN productos ON ordendetalle.ProductoID = productos.ProductoID WHERE ordenes.OrdenID=$OrdenID";
+
+            $result = mysqli_query($con, $cadena);
+            return $result;
+        } catch (Throwable $th) {
+            return $th->getMessage();
+        } finally {
+            $con->close();
+        }
+    }
 }

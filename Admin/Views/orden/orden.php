@@ -124,7 +124,7 @@
 
                     <div class="form-group">
                         <label for="FormaEnvio">Forma Envio</label>
-                        <input type="text" required class="form-control" id="FormaEnvio" name="Nombre_Producto" readonly>
+                        <input type="text" required class="form-control" id="FormaEnvio" name="FormaEnvio" readonly>
                     </div>
 
                     <div class="form-group">
@@ -164,6 +164,52 @@
         </div>
     </div>
 </div>
+
+
+<!-- MODAL DE PRODUCTOS  -->
+<!-- <div class="modal fade" id="Modal_productoso" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" id="form_productoso">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Porductos-Ordenes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <input type="hidden" name="id_empleado" id="id_empleado">
+                    <div class="form-group">
+
+                 </div>
+
+            </form>
+        </div>
+    </div>
+</div> -->
+<!-- MODAL DE PRODUCTOS -->
+<div class="modal fade" id="Modal_productoso" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Productos-Ordenes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Lista de nombres de productos -->
+                <ul id="lista_productos"></ul>
+            </div>
+            <div class="modal-footer">
+                <!-- Puedes agregar botones de acción aquí si es necesario -->
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 <?php require_once('../html/script2.php') ?>
 <!--
