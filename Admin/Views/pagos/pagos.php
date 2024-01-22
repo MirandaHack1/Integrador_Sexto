@@ -18,9 +18,6 @@
                 <th class="border-bottom-0">
                     <h6 class="fw-semibold mb-0">fecha</h6>
                 </th>
-                <th class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">status</h6>
-                </th>
                 
                 <th class="border-bottom-0">
                     <h6 class="fw-semibold mb-0">email</h6>
@@ -30,6 +27,9 @@
                 </th>
                 <th class="border-bottom-0">
                     <h6 class="fw-semibold mb-0">total</h6>
+                </th>
+                <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">status</h6>
                 </th>
             </tr>
         </thead>

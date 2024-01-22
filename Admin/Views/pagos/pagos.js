@@ -1,9 +1,9 @@
 // ***************************************************************************************************************************************************************************
-// function init() {
-//   $("#frm_palabras").on("submit", function (e) {
-//     guardaryeditar(e);
-//   });
-// }
+function init() {
+  //   $("#frm_palabras").on("submit", function (e) {
+  //     guardaryeditar(e);
+  //   });
+}
 // ***************************************************************************************************************************************************************************
 // ***************************************************************************************************************************************************************************
 $().ready(() => {
@@ -14,35 +14,55 @@ $().ready(() => {
 var todos = () => {
   var html = "";
   $.get("../../Controllers/pagos.controller.php?op=todos", (res) => {
-    console.log(res);
-    res = JSON.parse(res);
-    $.each(res, (index, valor) => {
-      // // Definir clases CSS según el estado
-      var estadoClass = "";
-      if (valor.status === "Completo") {
-        estadoClass = "text-danger"; // Texto en rojo
-      } else if (valor.status === "Procesado") {
-        estadoClass = "text-warning"; // Texto en amarillo
-      } else if (valor.status === "Enviado") {
-        estadoClass = "text-success"; // Texto en verde
+    try {
+      res = JSON.parse(res);
+
+      if (!Array.isArray(res)) {
+        console.error("La respuesta no es un arreglo válido.");
+        return;
       }
-      html += `<tr>
-                <td>${index + 1}</td>
-                <td>${valor.id_transaccion}</td>
-                <td>${valor.fecha}</td>
-                <td>${valor.email}</td>
-                <td>${valor.Nombre}</td>
-                <td>${valor.total}</td>
-                <td><div class="d-flex align-items-center gap-2">
-                <span class="badge ${fondo} rounded-3 fw-semibold">${valor.status
-        }</span>
-            </div></td>
-             
-              </tr>`;
-    });
-    $("#tabla_pagos").html(html);
+
+      $.each(res, (index, valor) => {
+        // Definir clases CSS según el estado
+        var estadoClass = "";
+        switch (valor.status) {
+          case "Completo":
+            estadoClass = "text-danger"; // Texto en rojo
+            break;
+          case "Procesado":
+            estadoClass = "text-warning"; // Texto en amarillo
+            break;
+          case "Enviado":
+            estadoClass = "text-success"; // Texto en verde
+            break;
+          default:
+            estadoClass = ""; // Otra clase o sin clase
+        }
+
+        html += `<tr>
+                  <td>${index + 1}</td>
+                  <td>${valor.id_transaccion}</td>
+                  <td>${valor.fecha}</td>
+                  <td>${valor.email}</td>
+                  <td>${valor.Nombre}</td>
+                  <td>${valor.total}</td>
+                  <td class="${estadoClass}">${valor.status}</td>
+                  <td>
+                </tr>`;
+      });
+
+      $("#tabla_pagos").html(html);
+    } catch (error) {
+      console.error("Error al analizar la respuesta JSON:", error);
+    }
   });
 };
+
+// Llamada a la función todos
+todos();
+
+// Llamada a la función todos
+todos();
 
 
 // ***************************************************************************************************************************************************************************
