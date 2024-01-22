@@ -87,10 +87,10 @@
                         <label for="Rol">Rol</label>
                         <select name="Rol" id="Rol" class="form-control">
                             <option value="Administrador">Administrador</option>
-                            <option value="Vendedor">Vendedor</option>
+                            <!-- <option value="Vendedor">Vendedor</option>
                             <option value="Cliente">Cliente</option>
                             <option value="Gerente">Gerente</option>
-                            <option value="Cajero">Cajero</option>
+                            <option value="Cajero">Cajero</option> -->
                         </select>
                     </div>
                     <div class="form-group">

@@ -90,11 +90,11 @@
                                                                                         MENU DE PERSONALIZACION
             /*****************************************************************************************************************************************************************************/ -->
         <li class="sidebar-item">
-          <a class="sidebar-link" href="productos/productos.php" target="base" aria-expanded="false">
+          <a class="sidebar-link" href="pagos/pagos.php" target="base" aria-expanded="false">
             <span>
               <i class="ti ti-file"></i>
             </span>
-            <span class="hide-menu">Reportes</span>
+            <span class="hide-menu">Pagos</span>
           </a>
         </li>
         <!-- /*****************************************************************************************************************************************************************************/
