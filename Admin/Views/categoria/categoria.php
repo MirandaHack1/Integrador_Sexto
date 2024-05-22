@@ -1,6 +1,6 @@
 <?php require_once('../html/head2.php') ?>
 <div class="row">
-    <div class="col-lg-8 d-flex align-items-stretch">
+    
         <div class="card w-100">
             <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-4">Lista de Categoria</h5>
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 </div>
 <!-- Ventana Modal-->
 <!-- Button trigger modal -->

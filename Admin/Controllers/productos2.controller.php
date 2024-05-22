@@ -4,6 +4,7 @@ require_once('../Models/cls.imagen.model.php');
 $productos = new Clase_Productos;
 $subirfoto = new SubirFoto;
 switch ($_GET["op"]) {
+    
     case 'todos':
         $datos = array(); //defino un arreglo
         $datos = $productos->todos(); //llamo al modelo de usuarios e invoco al procedimiento todos y almaceno en una variable
@@ -12,6 +13,15 @@ switch ($_GET["op"]) {
         }
         echo json_encode($todos); //devuelvo el arreglo en formato json
         break;
+
+        case 'todos1':
+            $datos = array(); //defino un arreglo
+            $datos = $productos->todos1(); //llamo al modelo de usuarios e invoco al procedimiento todos y almaceno en una variable
+            while ($fila = mysqli_fetch_assoc($datos)) { //recorro el arreglo de datos
+                $todos[] = $fila;
+            }
+            echo json_encode($todos); //devuelvo el arreglo en formato json
+            break;
 
     case "uno":
         $ProductoID=$_POST["ProductoID"]; //defino una variable para almacenar el id del usuario, la variable se obtiene mediante POST
@@ -33,14 +43,14 @@ switch ($_GET["op"]) {
             $Imagen = '';
             $Imagen = $direccionimg;
         }
-
         $CategoriaID=$_POST["CategoriaID"];
         $FechaIngreso = $_POST["FechaIngreso"];
         $Stock = $_POST["Stock"];
         $Iva = $_POST["Iva"];
+        $Descuento=0;
 
         $datos = array(); //defino un arreglo
-        $datos = $productos->insertar($CodigoReferencia, $Nombre, $Precio, $Descripcion, $Imagen, $CategoriaID, $FechaIngreso, $Stock, $Iva); //llamo al modelo de usuarios e invoco al procedimiento insertar
+        $datos = $productos->insertar($CodigoReferencia, $Nombre, $Precio, $Descripcion, $Imagen, $CategoriaID, $FechaIngreso, $Stock, $Iva,  $Descuento); //llamo al modelo de usuarios e invoco al procedimiento insertar
         echo json_encode($datos); //devuelvo el arreglo en formato json
         break;
     case 'actualizar':
@@ -51,20 +61,19 @@ switch ($_GET["op"]) {
         $Descripcion = $_POST["Descripcion"];
         //procedimeinto para guardar la imagen en los archivos del proyecto
 
-        if ($_FILES['imagen'] != '') {
-            $imagen = $_FILES['imagen'];
-            $direccionimg = $subirfoto->guardar($imagen);
-            $imagen = '';
-            $imagen = $direccionimg;
+        if ($_FILES['Imagen'] != '') {
+            $Imagen = $_FILES['Imagen'];
+            $direccionimg = $subirfoto->guardar($Imagen);
+            $Imagen = '';
+            $Imagen = $direccionimg;
         }
         $CategoriaID=$_POST["CategoriaID"];
         $FechaIngreso = $_POST["FechaIngreso"];
         $Stock = $_POST["Stock"];
         $Iva = $_POST["Iva"];
-
-
+        $Descuento=0;
         $datos = array(); //defino un arreglo
-        $datos = $productos->actualizar($ProductoID,$CodigoReferencia, $Nombre, $Precio, $Descripcion, $Imagen, $CategoriaID, $FechaIngreso, $Stock, $Iva); //llamo al modelo de usuarios e invoco al procedimiento actualizar
+        $datos = $productos->actualizar($ProductoID,$CodigoReferencia, $Nombre, $Precio, $Descripcion, $Imagen, $CategoriaID, $FechaIngreso, $Stock, $Iva, $Descuento); //llamo al modelo de usuarios e invoco al procedimiento actualizar
         echo json_encode($datos); //devuelvo el arreglo en formato json
         break;
 

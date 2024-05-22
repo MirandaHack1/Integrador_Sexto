@@ -3,19 +3,18 @@
 
 
 
-<div class="row">
-    <div class="card w-100">
-        <div class="card-body p-4">
+
+        
             <h5 class="card-title fw-semibold mb-4">Lista de productos</h5>
 
             <div class="table-responsive">
-                <button type="button" onclick="cargaCategoria()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_productos">
+                <button type="button" onclick="cargaCategoria(); cargaIva();" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_productos">
                     Nuevo productos
                 </button>
                 <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
                         <tr>
-                            <th class="border-bottom-0">
+                            <th class="border-bottom-0" hidden>
                                 <h6 class="fw-semibold mb-0">#</h6>
                             </th>
                             <!-- *******************************************************************************************
@@ -62,9 +61,9 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-</div>
+        
+    
+
 
 <!-- Ventana Modal-->
 
@@ -95,7 +94,7 @@
 
                         <div class="form-group">
                             <label for="Nombre">Nombre</label>
-                            <input type="text" required class="form-control" id="Nombre" name="Nombre" placeholder="Ejm=Nombre" maxlength="25">
+                            <input type="text" required class="form-control" id="Nombre" name="Nombre" placeholder="Ejm=Nombre" maxlength="50">
                         </div>
 
                         <div class="form-group">
@@ -104,19 +103,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="IVA">IVA</label>
+                            <label for="Iva">IVA</label>
                             <select name="Iva" id="Iva" class="form-control">
-                                <option value="0">0%</option>
-                                <option value="8">8%</option>
-                                <option value="12">12%</option>
-                                <option value="14">14%</option>
+                            <option value="0">Seleccione un Iva</option>
                             </select>
                         </div>
 
 
                         <div class="form-group">
                             <label for="Descripcion">Descripcion</label>
-                            <input type="text" required class="form-control" id="Descripcion" name="Descripcion" placeholder="Ejm=Descripcion" maxlength="25">
+                            <input type="text" required class="form-control" id="Descripcion" name="Descripcion" placeholder="Ejm=Descripcion" maxlength="300">
                         </div>
 
                         <div class="form-group">
@@ -137,20 +133,18 @@
                             <input type="datetime-local" required class="form-control" id="FechaIngreso" name="FechaIngreso" placeholder="" maxlength="25">
                         </div>
 
+                     
                         <div class="form-group">
                             <label for="Stock">Stock</label>
-                            <input type="text" required class="form-control" id="Stock" name="Stock" placeholder="Ejm=12" maxlength="1000">
+                            <input type="text" required class="form-control" id="Stock" name="Stock" placeholder="Ejm=12" maxlength="100">
                         </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                        <button type="button" class="btn btn-secondary" onclick="limpia_Cajas()" data-bs-dismiss="modal">Close</button>
-                    </div>
-
-                    <!-- ******************************************************************************************* -->
+                    </div><!-- ******************************************************************************************* -->
                 </div>
-
+                <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-secondary" onclick="limpia_Cajas()" data-dismiss="modal">Close</button>
+                </div>
             </form>
         </div>
     </div>
@@ -162,3 +156,101 @@
 <script src="productos.model.js"></script> -->
 <script src="./productos2.js"></script>
 <!-- <script> -->
+<script>
+            /*-------------------------------------------------------------solo letras------------------------------------*/
+            // Función para bloquear la entrada de números en un campo de texto
+            function blockNumbersInput(inputElement) {
+                inputElement.addEventListener('keydown', (event) => {
+                    // Obtener el código de la tecla pulsada
+                    const keyCode = event.which || event.keyCode;
+
+                    // Permitir las teclas de control (por ejemplo, las teclas de flecha, retroceso, etc.)
+                    if (event.ctrlKey || event.altKey || event.metaKey || keyCode === 8 || keyCode === 9) {
+                        return;
+                    }
+
+                    // Bloquear la entrada si la tecla es un número (códigos de teclas del 0 al 9 y teclado numérico)
+                    if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) {
+                        event.preventDefault();
+                    }
+                });
+            }
+
+            // Obtener la referencia a los elementos de entrada de nombres y apellidos
+           // const nombreInputElement = document.getElementById('Nombre');
+           // const apellidoInputElement = document.getElementById('Descripcion');
+
+            // Aplicar la restricción de no permitir números en ambos campos
+            //blockNumbersInput(nombreInputElement);
+           // blockNumbersInput(apellidoInputElement);
+
+
+            /*-------------------------------------------------------------solo numeross------------------------------------*/
+
+            // Función para bloquear la entrada que no sea números en un campo de texto
+            function blockNonNumbersInput(inputElement) {
+                inputElement.addEventListener('keydown', (event) => {
+                    // Obtener el código de la tecla pulsada
+                    const keyCode = event.which || event.keyCode;
+
+                    // Permitir las teclas de control (por ejemplo, las teclas de flecha, retroceso, etc.)
+                    if (event.ctrlKey || event.altKey || event.metaKey || keyCode === 8 || keyCode === 9) {
+                        return;
+                    }
+
+                    // Bloquear la entrada si la tecla no es un número (códigos de teclas del 0 al 9 y teclado numérico)
+                    if (!((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105))) {
+                        event.preventDefault();
+                    }
+                });
+            }
+
+            // Obtener la referencia a los elementos de entrada de nombres y apellidos
+            const telefonoInputElement = document.getElementById('CodigoReferencia');
+            const pesoInputElement = document.getElementById('Stock');
+
+
+            // Aplicar la restricción de solo permitir números en ambos campos
+            blockNonNumbersInput(telefonoInputElement);
+            blockNonNumbersInput(pesoInputElement);
+
+
+
+            /*-------------------------------------------------------------solo numeros y Punto------------------------------------*/
+
+            // Función para bloquear la entrada que no sean números y puntos en un campo de texto
+            function blockNonNumbersAndDecimalInput(inputElement) {
+                inputElement.addEventListener('keydown', (event) => {
+                    // Obtener el código de la tecla pulsada
+                    const keyCode = event.which || event.keyCode;
+
+                    // Permitir las teclas de control (por ejemplo, las teclas de flecha, retroceso, etc.)
+                    if (event.ctrlKey || event.altKey || event.metaKey || keyCode === 8 || keyCode === 9) {
+                        return;
+                    }
+
+                    // Permitir números y el punto decimal (códigos de teclas del 0 al 9, teclado numérico y el punto)
+                    if (
+                        (keyCode >= 48 && keyCode <= 57) || // Números desde el teclado principal
+                        (keyCode >= 96 && keyCode <= 105) || // Números desde el teclado numérico
+                        keyCode === 110 || keyCode === 190 // Punto decimal (tanto el punto como el numpad decimal)
+                    ) {
+                        // Verificar que no haya más de un punto decimal en el campo
+                        if ((keyCode === 110 || keyCode === 190) && inputElement.value.includes('.')) {
+                            event.preventDefault();
+                        }
+                    } else {
+                        event.preventDefault();
+                    }
+                });
+            }
+
+            // Obtener la referencia a los elementos de entrada de nombres y apellidos
+            const alturaInputElement = document.getElementById('Precio');
+
+            // Aplicar la restricción de solo permitir números y puntos en ambos campos
+            blockNonNumbersAndDecimalInput(alturaInputElement);
+
+
+            /*-------------------------------------------------------------FIN------------------------------------*/
+        </script>

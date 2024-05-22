@@ -1,5 +1,5 @@
 <?php require_once('../html/head2.php') ?>
-<h5 class="card-title fw-semibold mb-4">Lista de Palabras</h5>
+<h5 class="card-title fw-semibold mb-4">Lista de Palabras AI</h5>
 
 <div class="table-responsive" style="overflow-x: auto;">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_palabras">

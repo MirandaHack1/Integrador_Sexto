@@ -10,7 +10,7 @@ class Clase_Pagos
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
             $cadena = "SELECT productospago.*,clientes.Nombre FROM productospago
-            INNER JOIN clientes ON productospago.id_cliente = clientes.ClienteID;";
+            INNER JOIN clientes ON productospago.ClienteID = clientes.ClienteID";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (Throwable $th) {

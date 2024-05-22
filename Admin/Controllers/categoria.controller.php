@@ -19,7 +19,7 @@ switch ($_GET["op"]) {
         break;
     case 'insertar':
    
-        $Nombre = $_POST["Nombre"];
+        $Nombre = $_POST["Nombre_s"];
         $Descripcion = $_POST["Descripcion"];
         $Estado = $_POST["Estado"];
         $datos = array(); //defino un arreglo

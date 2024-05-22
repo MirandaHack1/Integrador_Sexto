@@ -27,7 +27,7 @@ class Usuarios_Model {
       $.each(res, (index, valor) => {
         var fondo;
         if (valor.Rol == "Administrador") fondo = "bg-primary";
-        else if (valor.Rol == "Vendedor") fondo = "bg-success";
+        else if (valor.Rol == "Empleado") fondo = "bg-success";
         else if (valor.Rol == "Cliente") fondo = "bg-warning";
         else if (valor.Rol == "Gerente") fondo = "bg-danger";
         else if (valor.Rol == "Cajero") fondo = "bg-info";
@@ -135,8 +135,8 @@ class Usuarios_Model {
         $("#Apellidos").val(res.Apellidos);
         $("#Telefono").val(res.Telefono);
         $("#Correo").val(res.Correo);
-        $("#Contrasenia").val(res.Contrasenia);
-        $("#Contrasenia2").val(res.Contrasenia);
+       // $("#Contrasenia").val(res.Contrasenia);
+       // $("#Contrasenia2").val(res.Contrasenia);
 
         document.getElementById("Rol").value = res.Rol; //asiganr al select el valor
       }
